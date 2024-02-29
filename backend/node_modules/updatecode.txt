@@ -1,0 +1,21 @@
+Function to store the data in json format
+
+
+import json
+def chat(self):
+        reply = input(random.choice(self.random_questions)).lower()
+        while not self.make_exit(reply):
+            user_response = {'user': self.name, 'reply': reply, 'timestamp': '2024-02-29 12:00:00'}
+            self.user_responses.append(user_response)  # Store the user response
+            reply = input(self.match_reply(reply))
+
+        # After the conversation ends, save the user responses to a JSON file
+        self.save_user_responses()
+
+    # Define a new method to save user responses to a JSON file:
+    def save_user_responses(self):
+        with open('user_responses.json', 'a') as jsonfile:
+            for user_response in self.user_responses:
+                json.dump(user_response, jsonfile)
+                jsonfile.write('\n')  # Add a newline for each entry
+        print("User responses have been saved to 'user_responses.json'.")
