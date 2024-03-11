@@ -1,10 +1,12 @@
-require('dotenv').config();
-
-const express = require('express');
-
+import dotenv from "dotenv";
+import express from "express";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 //express app
 const app = express();
-
+dotenv.config();
+connectDB();
 
 //middleware
 app.use((req, res, next) => {
