@@ -1,25 +1,29 @@
 import "./Home.css";
+import Navbar from "./Navbar/Navbar";
+import Footer from "./Footer/Footer";
 
 const Home = () => {
   return (
     <>
+      <Navbar />
       <body>
-        <section class="home">
-          <div class="left">
-            <div class="heading-text">
+        <section className="home">
+          <div className="left">
+            <div className="heading-text">
               <h1 id="brand">SAATHI</h1>
               <h2 align="center" id="slogan">
                 Your Personal mental health companion
               </h2>
             </div>
-            <div class="buttons">
+            <div className="buttons">
               <button id="button1">Get Started</button>
             </div>
-            <div class="stats"></div>
+            <div className="stats"></div>
           </div>
-          <div class="right"></div>
+          <div className="right"></div>
         </section>
       </body>
+      <Footer />
     </>
   );
 };

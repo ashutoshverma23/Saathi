@@ -1,0 +1,196 @@
+/* .box {
+  position: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.box .header {
+  position: relative;
+  display: flex;
+  width: 80%;  
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.box .header .Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+  padding: 1% 0;  
+}
+
+.Navbar a {
+  text-decoration: none;
+  color: black;
+  padding: 5px 15px;
+  border: 20px;
+  margin: 0 10px;
+  font-weight: 400;
+  border-radius: 20px;
+}
+.Navbar a:hover,
+.Navbar a.active {
+  background-color: grey;
+  transition: 0.3s ease-in-out;
+  color: white;
+}
+
+
+@media (max-width: 768px) {
+  .Navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .Navbar a {
+    display: none;
+  }
+
+  .Navbar .hamburger {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+  }
+
+  .Navbar .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin-bottom: 5px;
+    background-color: black;
+  }
+
+  .Navbar .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .Navbar .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .Navbar .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .Navbar .menu {
+    display: none;
+  }
+
+  .Navbar .menu.active {
+    display: block;
+  }
+}
+
+.line {
+  width: 20px;
+  height: 3px;
+  background-color: black;
+  margin: 5px 0;
+}
+
+.logo {
+  width: 60px;
+  margin-left: 5px;
+}
+
+.right-buttons {
+  right: 0;
+  position: absolute;
+} */
+.box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  /* padding: 15px; */
+  background-color: #ffffff; /* Adjust the background color as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for a subtle effect */
+  border-radius: 10px;
+}
+
+.logo {
+  width: 60px;
+  margin-left: 5px;
+}
+
+.Navbar {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+}
+
+.Navbar li {
+  margin-right: 20px; /* Adjust the spacing between navbar items as needed */
+}
+
+.Navbar a {
+  text-decoration: none;
+  color: #333333; /* Adjust the text color as needed */
+  font-weight: bold;
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+.hamburger {
+  display: none; /* Hide the hamburger menu by default on larger screens */
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 30px;
+  height: 3px;
+  background-color: #333333; /* Adjust the color of the hamburger lines as needed */
+  margin: 6px 0;
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  .header {
+    /* flex-direction: column; */
+    /* align-items: flex-start;
+     */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Navbar {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust the top position of the navbar dropdown as needed */
+    /* left: 0; */
+    right: 1em;
+    width: 70%;
+    background-color: whitesmoke; /* Adjust the background color of the dropdown as needed */
+    opacity: 99%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for a subtle effect */
+    z-index: 1;
+    border-radius: 10px;
+  }
+
+  .Navbar.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
