@@ -1,11 +1,13 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-const bcrypt = require("bcrypt-nodejs");
+import bcrypt from "bcryptjs";
+// const bcrypt = require("bcrypt-nodejs");
 
-const { getUserhash, getUserById, addCredential } = require("../Database/database");
+// const { getUserhash, getUserById, addCredential } = require("../Database/database");
+import { getUserhash, getUserById, addCredential } from "../Database/database.js";
 //May have to update to bcrypt or bcrypt-js
 
-const registerUser = (req, res) => {
+export const registerUser = (req, res) => {
     const { name, email, phone, password, address } = req.body;
 
 
@@ -39,7 +41,7 @@ const registerUser = (req, res) => {
     }
 }
 
-const verifyLogin = async (req, res) => {
+export const verifyLogin = async (req, res) => {
     const { email, password } = req.body;
 
     console.log(email, password);
@@ -71,7 +73,7 @@ const verifyLogin = async (req, res) => {
 }
 
 
-module.exports = {
+export default {
     registerUser,
     verifyLogin
 }

@@ -1,17 +1,17 @@
 
-const addCredential = async (email, hsh) => {
+export const addCredential = async (email, hsh) => {
     return 1;
 }
-const getUserhash = async (email) => {
+export const getUserhash = async (email) => {
     return 1;
 }
-const getUserById = async (id) => {
+export const getUserById = async (id) => {
     return "em";
 }
 
 
-module.exports = {
-    addCredential,
-    getUserhash,
-    getUserById,
-}
+// export default {
+//     getUserhash,
+//     getUserById,
+//     addCredential,
+// }

@@ -2,19 +2,20 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 import dotenv from "dotenv";
-import connectDB from "./config/db.js";
+// import connectDB from "./config/db.js";
 import express from "express";
 import session from "express-session";
 import cors from "cors";
-import guuid from "uuid";
-const { registerUser, verifyLogin } = require("./Controllers/auth.js");
+// import guuid from "uuid";
+// const { registerUser, verifyLogin } = require("./Controllers/auth.js");
+import { registerUser, verifyLogin } from "./Controllers/auth.js";
 // import authRoutes from "./routes/authRoutes.js";
 // import userRoutes from "./routes/userRoutes.js";
 
 //config
 dotenv.config();
-connectDB();
-const genuuid = guuid.v4;
+// connectDB();
+// const genuuid = guuid.v4;
 
 //express app
 const app = express();
@@ -27,10 +28,10 @@ app.use(session({
   //   pgPromise: require("../Database/database.js").db,
   //   createTableIfMissing: true
   // }),
-  genid: function (req) {
-    console.log("session id created");
-    return genuuid();
-  },
+  // genid: function (req) {
+  //   console.log("session id created");
+  //   return genuuid();
+  // },
   secret: process.env.SESSION_KEY,
   resave: false,
   saveUninitialized: true,
