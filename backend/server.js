@@ -1,9 +1,20 @@
-import dotenv from 'dotenv';
-import express from 'express';
-import session from 'express-session';
-import cors from 'cors';
-import { v4 as genuuid } from 'uuid';
-import { registerUser, verifyLogin } from './Controllers/auth.js';
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import express from "express";
+import session from "express-session";
+import cors from "cors";
+import guuid from "uuid";
+const { registerUser, verifyLogin } = require("./Controllers/auth.js");
+// import authRoutes from "./routes/authRoutes.js";
+// import userRoutes from "./routes/userRoutes.js";
+
+//config
+dotenv.config();
+connectDB();
+const genuuid = guuid.v4;
 
 //express app
 const app = express();
@@ -29,16 +40,13 @@ app.use(session({
     expires: 60000
   },
   // cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
-}));
+})
+);
 
+//middleware
 app.use(express.urlencoded({ extended: false }));    //middleware for accessing req.body
 app.use(express.json());    //for accessing req.body
 
-// import authRoutes from "./routes/authRoutes.js";
-// import userRoutes from "./routes/userRoutes.js";
-//express app
-
-//middleware
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();

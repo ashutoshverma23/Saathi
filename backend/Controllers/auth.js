@@ -1,11 +1,13 @@
-// const bcrypt = require("bcrypt-nodejs");
-import bcrypt from 'bcrypt';
-// const { getUserhash, getUserById, addCredential } = require("../Database/database");
-import { getUserhash, getUserById, addCredential } from "../Database/database";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const bcrypt = require("bcrypt-nodejs");
+
+const { getUserhash, getUserById, addCredential } = require("../Database/database");
 //May have to update to bcrypt or bcrypt-js
 
 const registerUser = (req, res) => {
     const { name, email, phone, password, address } = req.body;
+
 
     console.log(email, password);
 
