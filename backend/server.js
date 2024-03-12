@@ -33,9 +33,7 @@ app.use(session({
 
 app.use(express.urlencoded({ extended: false }));    //middleware for accessing req.body
 app.use(express.json());    //for accessing req.body
-import dotenv from "dotenv";
-import express from "express";
-import connectDB from "./config/db.js";
+
 // import authRoutes from "./routes/authRoutes.js";
 // import userRoutes from "./routes/userRoutes.js";
 //express app
