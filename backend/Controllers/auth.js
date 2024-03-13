@@ -1,6 +1,6 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt-nodejs";
 // const bcrypt = require("bcrypt-nodejs");
 
 // const { getUserhash, getUserById, addCredential } = require("../Database/database");

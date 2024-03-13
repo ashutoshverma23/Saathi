@@ -6,19 +6,18 @@ const Footer = () => {
         <footer>
             <div className="container">
                 <div className="left-portion">
-                    <h3>About Us</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nunc id consequat ultrices, nisl nunc tincidunt nunc, id consectetur lectus nunc id lectus.</p>
+                    <h2>About Us</h2>
+                    <p>We are team PCS2125-15 <br></br> Ashutosh Verma, Ananya Verma, Arpita <br></br> </p>
                 </div>
                 <div className="right-portion">
                     <h3>Contact Us</h3>
                     <ul>
                         <li>Phone: 123-456-7890</li>
                         <li>Email: info@example.com</li>
-                        <li>Address: 123 Main St, City, State</li>
                     </ul>
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 };
 

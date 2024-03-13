@@ -1,13 +1,13 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
+// import chatbotModel from "./Models/chatbotModel.js";
 // import connectDB from "./config/db.js";
 import express from "express";
 import session from "express-session";
 import cors from "cors";
 // import guuid from "uuid";
-// const { registerUser, verifyLogin } = require("./Controllers/auth.js");
 import { registerUser, verifyLogin } from "./Controllers/auth.js";
 // import authRoutes from "./routes/authRoutes.js";
 // import userRoutes from "./routes/userRoutes.js";
@@ -20,6 +20,31 @@ dotenv.config();
 //express app
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
+
+// app.post('/api/chat', (req, res) => {
+//   const userMessage = req.body.message;
+
+//   // Run the Python script with the user's message
+//   const options = {
+//     mode: 'text',
+//     pythonPath: 'python3', // Change this to the path of your Python executable
+//     pythonOptions: ['-u'],
+//     scriptPath: './path/to/your/python-scripts', // Replace with the actual path
+//     args: [userMessage],
+//   };
+
+//   PythonShell.run('chatbot_script.py', options, (err, results) => {
+//     if (err) {
+//       console.error('Error:', err);
+//       res.status(500).json({ error: 'Internal Server Error' });
+//     } else {
+//       const chatbotReply = results[0];
+//       res.json({ reply: chatbotReply });
+//     }
+//   });
+// });
+
 
 // Use express-session middleware
 app.use(session({
@@ -65,7 +90,6 @@ const isAuthenticated = (req, res, next) => {
 
 //routes
 app.get('/', (req, res) => {
-  // res.send('Hello World');
   res.json({ message: "Welcome to the server" });
 });
 

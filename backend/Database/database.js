@@ -8,10 +8,3 @@ export const getUserhash = async (email) => {
 export const getUserById = async (id) => {
     return "em";
 }
-
-
-// export default {
-//     getUserhash,
-//     getUserById,
-//     addCredential,
-// }
