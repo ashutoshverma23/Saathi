@@ -3,7 +3,7 @@ const require = createRequire(import.meta.url);
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 // import chatbotModel from "./Models/chatbotModel.js";
-// import connectDB from "./config/db.js";
+import connectDB from "./config/db.js";
 import express from "express";
 import session from "express-session";
 import cors from "cors";
@@ -14,7 +14,7 @@ import { registerUser, verifyLogin } from "./Controllers/auth.js";
 
 //config
 dotenv.config();
-// connectDB();
+connectDB();
 // const genuuid = guuid.v4;
 
 //express app
