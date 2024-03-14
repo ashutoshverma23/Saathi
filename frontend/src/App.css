@@ -1,0 +1,42 @@
+.flex{
+    display: flex;
+}
+.justify-left{
+    justify-content: flex-start;
+}
+.justify-right{
+    justify-content: flex-end;
+}
+
+.bold{
+    font-weight: 700;
+}
+
+/* .bold{
+    font-weight: 600;
+} */
+
+.fs-125{
+    font-size: 1.25rem;
+}
+
+.head-font{
+    font-family: Poppins;
+}
+.base-color{
+    color: #0029FF;
+}
+.base-bg{
+    background-color: #0029FF;
+}
+.button{
+    height: 36px;
+    color: #FFF;
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: 1px solid #0029FF;
+    background: #0029FF;
+    cursor: pointer;
+}

@@ -1,20 +1,22 @@
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 // import chatbotModel from "./Models/chatbotModel.js";
-import connectDB from "./config/db.js";
+import {connectDB, mongoose} from "./config/db.js";
 import express from "express";
 import session from "express-session";
+import MongoStore from 'connect-mongo';
+// import { DB_NAME } from './constants.js';
 import cors from "cors";
 // import guuid from "uuid";
 import { registerUser, verifyLogin } from "./Controllers/auth.js";
+import { printMessage } from "./Controllers/chat.js";
 // import authRoutes from "./routes/authRoutes.js";
 // import userRoutes from "./routes/userRoutes.js";
 
 //config
 dotenv.config();
-connectDB();
+await connectDB();
+// const MongoStore = new connectMongo(session);
 // const genuuid = guuid.v4;
 
 //express app
@@ -48,11 +50,9 @@ app.use(bodyParser.json());
 
 // Use express-session middleware
 app.use(session({
-  // store: new (require('connect-pg-simple')(session))({
-  //   // Insert connect-pg-simple options here
-  //   pgPromise: require("../Database/database.js").db,
-  //   createTableIfMissing: true
-  // }),
+  store: MongoStore.create({
+    client: mongoose.connection.getClient()
+  }),
   // genid: function (req) {
   //   console.log("session id created");
   //   return genuuid();
@@ -70,8 +70,8 @@ app.use(session({
 );
 
 //middleware
-app.use(express.urlencoded({ extended: false }));    //middleware for accessing req.body
-app.use(express.json());    //for accessing req.body
+app.use(bodyParser.urlencoded({ extended: false }));    //middleware for accessing req.body
+// app.use(express.json());    //for accessing req.body
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
@@ -89,15 +89,20 @@ const isAuthenticated = (req, res, next) => {
 
 
 //routes
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
   res.json({ message: "Welcome to the server" });
 });
 
-app.post('/register', async (req, res) => await registerUser(req, res));
+app.post('/api/register', async (req, res) => await registerUser(req, res));
 
-app.post('/login', async (req, res) => await verifyLogin(req, res));
+app.post('/api/login', async (req, res) => await verifyLogin(req, res));
 
-app.get('/dash', (req, res) => {
+app.post('/api/chat', (req, res) => {
+  printMessage(req, res) ;
+})
+
+app.get('/api/dash', isAuthenticated, (req, res) => {
+  console.log(req.session);
   res.send("hiii");
 })
 

@@ -8,14 +8,23 @@ const ChatInterface = () => {
 
     const handleSendMessage = async () => {
         if (newMessage.trim() !== '') {
-            // Update the server endpoint as needed
-            const apiUrl = 'http://localhost:5000/api/chat';
-            const response = await axios.post(apiUrl, { message: newMessage });
-            const chatbotReply = response.data.reply;
 
-            setMessages([...messages, { text: newMessage, sender: 'user' }]);
-            setMessages([...messages, { text: chatbotReply, sender: 'chatbot' }]);
-            setNewMessage('');
+            // // Update the server endpoint as needed
+            // const apiUrl = 'http://localhost:5000/api/chat';
+            // const response = await axios.post(apiUrl, { message: newMessage });
+            // const chatbotReply = response.data.reply;
+
+            // setMessages([...messages, { text: newMessage, sender: 'user' }]);
+            // setMessages([...messages, { text: chatbotReply, sender: 'chatbot' }]);
+            // setNewMessage('');
+
+            //send message to server
+            const response = await axios.post('/api/chat', { message: newMessage });
+            console.log(response);
+            setMessages(
+                // messages.push(response)
+                [response.data]
+            )
         }
     };
 
