@@ -1,0 +1,43 @@
+/* ReportPage.css */
+.report-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.report-page h1 {
+  font-size: 36px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.report-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.report-item {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.report-title {
+  font-size: 24px;
+  color: #333;
+}
+
+.report-description {
+  font-size: 16px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.report-date {
+  font-size: 14px;
+  color: #888;
+  margin-top: 10px;
+}

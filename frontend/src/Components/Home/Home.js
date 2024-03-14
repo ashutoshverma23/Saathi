@@ -1,11 +1,10 @@
 import "./Home.css";
-import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <>
-      <Navbar />
       <body>
         <section className="home">
           <div className="left">
@@ -16,7 +15,8 @@ const Home = () => {
               </h2>
             </div>
             <div className="buttons">
-              <button id="button1">Get Started</button>
+              <button id="button1"><Link to="/aboutus">Know More</Link></button>
+              {/* <Link to="/chat"></Link> */}
             </div>
             <div className="stats">
             </div>
@@ -24,13 +24,11 @@ const Home = () => {
 
           {/* right components */}
           <div className="right">
-            {/* <div className="heading-text">
-              <h1 id="brand">SAATHI</h1>
-            </div> */}
             <img src={require("./chatbot.png")} alt="chatbot" className="chatbot" />
             <div className="buttons">
               {/* adding link to the chatbot url here */}
-              <button id="button1">Chat</button>
+              <Link to="/chat"><button id="button1">Chat</button> </Link>
+
             </div>
             <div className="stats">
             </div>
@@ -41,5 +39,8 @@ const Home = () => {
     </>
   );
 };
+
+
+
 
 export default Home;

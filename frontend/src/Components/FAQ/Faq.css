@@ -1,0 +1,22 @@
+/* App.css */
+.faq-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.faq-list {
+  margin-top: 20px;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.question {
+  color: #333;
+}
+
+.answer {
+  color: #666;
+}

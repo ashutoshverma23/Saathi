@@ -1,21 +1,61 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import "./App.css";
+import React from "react";
+import Navbar from "./Components/Home/Navbar/Navbar";
 import Home from "./Components/Home/Home";
-import Signin from "./Components/SignIn/SignIn";
+import SignUp from "./Components/SignUp/SignUp";
 import Chat from "./Components/Chatbot/Chat";
+import Login from './Components/LogIn/LogIn';
+import Reports from './Components/Reports/Reports';
+import FAQPage from './Components/FAQ/Faq';
+import AboutUs from './Components/AboutUs/AboutUs';
+import { createBrowserRouter, Outlet } from "react-router-dom";
 
-function App() {
+const AppLayout = () => {
   return (
-    <Router>
-      <div className="pages">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sign-in" element={<Signin />} />
-          <Route path="/chat" element={<Chat />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="app">
+      <Navbar />
+      <Outlet />
+    </div>
   );
-}
+};
 
-export default App;
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/faq",
+        element: <FAQPage />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/chat",
+        element: <Chat />,
+      },
+      {
+        path: "/reports",
+        element: <Reports />,
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs />,
+      }
+    ],
+  },
+
+]);
+
+export default appRouter;
+
