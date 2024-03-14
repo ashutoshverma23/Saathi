@@ -1,5 +1,3 @@
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
 import bcrypt from "bcrypt-nodejs";
 // const bcrypt = require("bcrypt-nodejs");
 
@@ -8,10 +6,10 @@ import { getUserhash, getUserById, addCredential } from "../Database/database.js
 //May have to update to bcrypt or bcrypt-js
 
 export const registerUser = (req, res) => {
-    const { name, email, phone, password, address } = req.body;
+    const { name, email, phone, password } = req.body;
 
 
-    console.log(email, password);
+    console.log(email, password, phone, name);
 
     if (name && email && phone && password) {
         //validate input
@@ -35,7 +33,9 @@ export const registerUser = (req, res) => {
         req.session.isAuth = true;
         req.session.userid = userid;
         req.session.save(() => {
-            console.log("Login session - ", req.sessionID);
+            // console.log("Login session - ", req.sessionID);
+            // console.log(req.session);
+
         });
         return res.status(200).json({ userid });
     }
@@ -44,8 +44,7 @@ export const registerUser = (req, res) => {
 export const verifyLogin = async (req, res) => {
     const { email, password } = req.body;
 
-    console.log(email, password);
-
+    // console.log(email, password);
 
     try {
         const { userid, hashedpassword } = await getUserhash(email);

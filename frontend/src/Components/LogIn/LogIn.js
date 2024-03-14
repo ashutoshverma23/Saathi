@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LogIn.css";
+import axios from 'axios';
 export default function Login(props) {
 
     const [credentials, setCredentials] = useState({ email: "", password: "" })
@@ -8,24 +9,35 @@ export default function Login(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:5000/api/auth/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5MmQyNjQxNjJhMzEzNzcyM2JjYWQyIn0sImlhdCI6MTY4NzM0MzkyMn0.9EOAn2B2uk4H21fUs9WCtBYIYBUrIRyJ1P5UoEh1Vo4",
-            },
-            body: JSON.stringify({ email: credentials.email, password: credentials.password })
-        });
-        const json = await response.json();
-        console.log(json);
-        if (json.success) {
-            //save the auth token and redirect
-            localStorage.setItem("token", json.authtoken);
-            props.showAlert("Logged in Successfully", "success");
-            navigate('/');
-        }
-        else {
-            props.showAlert("Invalid Details", "danger");
+        try{
+            const response = await axios({
+                method: "POST",
+                url: '/api/login',
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5MmQyNjQxNjJhMzEzNzcyM2JjYWQyIn0sImlhdCI6MTY4NzM0MzkyMn0.9EOAn2B2uk4H21fUs9WCtBYIYBUrIRyJ1P5UoEh1Vo4",
+                },
+                data: JSON.stringify({ 
+                    email: credentials.email, 
+                    password: credentials.password 
+                })
+            });
+            // const json = await response.json();
+            console.log(response.data);
+            if (response.success) {
+                //save the auth token and redirect
+                localStorage.setItem("token", response.authtoken);
+                // props.showAlert("Logged in Successfully", "success");
+                navigate('/');
+            }
+            else {
+                console.log(response.data);
+                // props.showAlert("Invalid Details", "danger");
+            }
+        }catch(err){
+            // props.showAlert("Something went wrong", "danger");
+            console.log(err);
         }
     };
 
