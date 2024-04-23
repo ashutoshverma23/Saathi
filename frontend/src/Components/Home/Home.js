@@ -28,7 +28,6 @@ const Home = () => {
             <div className="buttons">
               {/* adding link to the chatbot url here */}
               <Link to="/chat"><button id="button1">Chat</button> </Link>
-
             </div>
             <div className="stats">
             </div>

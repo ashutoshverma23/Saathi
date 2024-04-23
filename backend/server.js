@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
-import bodyParser from "body-parser";
 // import chatbotModel from "./Models/chatbotModel.js";
-import {connectDB, mongoose} from "./config/db.js";
+import { connectDB, mongoose } from "./config/db.js";
 import express from "express";
 import session from "express-session";
 import MongoStore from 'connect-mongo';
@@ -22,30 +21,30 @@ await connectDB();
 //express app
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-// app.post('/api/chat', (req, res) => {
-//   const userMessage = req.body.message;
+app.post('/api/chat', (req, res) => {
+  const userMessage = req.body.message;
 
-//   // Run the Python script with the user's message
-//   const options = {
-//     mode: 'text',
-//     pythonPath: 'python3', // Change this to the path of your Python executable
-//     pythonOptions: ['-u'],
-//     scriptPath: './path/to/your/python-scripts', // Replace with the actual path
-//     args: [userMessage],
-//   };
+  // Run the Python script with the user's message
+  const options = {
+    mode: 'text',
+    pythonPath: 'C:/Program Files/Python312/python.exe', // Change this to the path of your Python executable
+    pythonOptions: ['-u'],
+    scriptPath: './path/to/your/python-scripts', // Replace with the actual path
+    args: [userMessage],
+  };
 
-//   PythonShell.run('chatbot_script.py', options, (err, results) => {
-//     if (err) {
-//       console.error('Error:', err);
-//       res.status(500).json({ error: 'Internal Server Error' });
-//     } else {
-//       const chatbotReply = results[0];
-//       res.json({ reply: chatbotReply });
-//     }
-//   });
-// });
+  PythonShell.run('chatbot_script.py', options, (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      const chatbotReply = results[0];
+      res.json({ reply: chatbotReply });
+    }
+  });
+});
 
 
 // Use express-session middleware
@@ -89,16 +88,12 @@ const isAuthenticated = (req, res, next) => {
 
 
 //routes
-app.get('/api/', (req, res) => {
-  res.json({ message: "Welcome to the server" });
-});
-
 app.post('/api/register', async (req, res) => await registerUser(req, res));
 
 app.post('/api/login', async (req, res) => await verifyLogin(req, res));
 
 app.post('/api/chat', (req, res) => {
-  printMessage(req, res) ;
+  printMessage(req, res);
 })
 
 app.get('/api/dash', isAuthenticated, (req, res) => {
