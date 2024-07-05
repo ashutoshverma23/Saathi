@@ -20,7 +20,7 @@ A brief description of what your project does and why it is useful.
 
 Include a link to a live demo or screenshots of your project.
 
-![Demo Screenshot](link-to-screenshot)
+![Demo Screenshot](Home.jpg)
 
 ## Installation
 
